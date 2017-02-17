@@ -1,5 +1,29 @@
 from bs4 import BeautifulSoup
-str= #hardcode the html description of the grades page as a multiline variable
+import mechanize
+import getpass
+
+br=mechanize.Browser()
+br.set_handle_robots(False)
+br.addheaders = [("User-agent","Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.2.13) Gecko/20101206 Ubuntu/10.10 (maverick) Firefox/3.6.13")]
+sign_in=br.open("https://www.iitm.ac.in/viewgrades/")
+br.select_form(nr=0)
+
+print "\n"
+
+br["rollno"]=raw_input("Enter username : ")
+br["pwd"]=getpass.getpass("Enter password : ")
+login=br.submit()
+
+links=[]
+for link in br.links() : 
+    links.append(link)
+
+
+request=br.click_link(links[1])
+response=br.follow_link(links[1])
+
+str=response.read()
+
 soup=BeautifulSoup(str,'html.parser')
 
 a=soup.findAll("tr")
@@ -57,8 +81,7 @@ for t in attendance :
     attendance1.append(t.getText())
 
 dict1=[]
-p= #hardcode the number of subjects taken till now
-for p in range(0,p):
+for p in range(0,len(number)):
         d={}
         d["Number"]=number1[p]
         d["CourseNumber"]=coursenumber1[p]
