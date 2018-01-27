@@ -10,9 +10,9 @@ Python 2.x
 # Trial
 ```Code to be run in terminal```
 
-$ cd HTML-Parsing
+```$ cd HTML-Parsing```
 
-$ python gradeparse.py
+```$ python gradeparse.py```
 
 Enter username : INSTI_RNO
 
